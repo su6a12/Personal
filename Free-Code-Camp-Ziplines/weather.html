@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Your Local Weather</title>
+		<link rel="stylesheet" type="text/css" href="weather.css">
+		<link href='https://fonts.googleapis.com/css?family=Dosis:600' rel='stylesheet' type='text/css'>
+
+	</head>
+	<body>
+		<h1 id="heading">Current Weather In <span id="location"></span></h1>
+		<div id="temp"></div>
+
+		<form id="temp-type">
+			<input type="radio" name="type" value="F" checked>Farenheit
+			<input type="radio" name="type" value="C">Celcius
+		</form>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="weather.js"></script>
+	</body>
+</html>
