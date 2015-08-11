@@ -1,0 +1,21 @@
+body {
+  width: 800px;
+  text-align: center;
+  margin: 0 auto;
+  font-family: 'Raleway', sans-serif;
+}
+h1 {
+  text-align: center;
+}
+.quote-container {
+  display: block;
+  border: 2px blue solid;
+  border-radius: 10px;
+  margin: 50px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+.link {
+  display: block;
+  margin-top: 10px;
+}

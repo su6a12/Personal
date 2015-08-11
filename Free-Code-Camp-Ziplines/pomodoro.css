@@ -1,0 +1,38 @@
+body {
+	font-family: 'Rock Salt', cursive;
+	text-align: center;
+}
+h1 {
+	font-size: 60px;
+	margin: 0 auto;
+	margin-top: -20px;
+	letter-spacing: 0.2em;
+}
+.section {
+	display: inline-block;
+}
+.mini-section {
+	display: inline-block;
+	margin: 0 10px;
+}
+#adjust-timer {
+	margin: 0 300px;
+	margin-top: -30px;
+}
+#break-section {
+	margin-right: 100px;
+}
+#work-section {
+	margin-left: 100px;
+}
+.button,
+button {
+	cursor: pointer;
+}
+#button-hide {
+
+}
+#timer {
+	font-size: 80px;
+	margin-top: 20px;
+}

@@ -1,0 +1,33 @@
+<html ng-app="pomodoroApp">
+<head>
+	<title>Pomodoro Clock</title>
+	<link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="pomodoro.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	<script type="text/javascript" src="pomodoro.js"></script>
+</head>
+
+<body ng-controller="pomodoroController">
+	<h1 id="clock-title">Let's Work!</h1>
+	<div id="adjust-timer">
+		<div id="break-section" class="section">
+			<h3>Break</h3>
+			<div id="add-break" class="button mini-section" ng-click="addTime(breakTime)">+</div>
+			<div id="break-time" class="mini-section">{{ breakTime }}</div>
+			<div id="sub-break" class="button mini-section" ng-click="subTime(breakTime)">-</div>
+		</div>
+		<div id="work-section" class="section">
+			<h3>Work</h3>
+			<div id="add-break" class="button mini-section" ng-click="addTime(workTime)">+</div>
+			<div id="work-time" class="mini-section">{{ workTime }}</div>
+			<div id="sub-break" class="button mini-section" ng-click="subTime(workTime)">-</div>
+		</div>
+	</div>
+	<div id="timer">
+		<div id="timer">{{ countdown }}</div>
+		<button id="start" ng-click="start_stop()">{{ isBegin | uppercase }}</button>
+	</div>
+</body>
+
+</html>
