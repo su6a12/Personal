@@ -33,6 +33,7 @@ button {
 
 }
 #timer {
-	font-size: 80px;
+	font-size: 100px;
 	margin-top: 20px;
+	letter-spacing: 0.2em;
 }
