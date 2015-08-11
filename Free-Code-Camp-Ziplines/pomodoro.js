@@ -1,13 +1,13 @@
 var pomodoroApp = angular.module("pomodoroApp", []);
 
 pomodoroApp.controller("pomodoroController", ["$scope", "$timeout", function($scope, $timeout) {
-	$scope.breakTime = 5;
-	$scope.workTime = 25;
-	$scope.countdown = $scope.workTime;
-	$scope.isBegin = "begin";
+	$scope.breakTime = 5;																// set initial break to 5 mins
+	$scope.workTime = $scope.countdown = 25;						// set initial work and display to 25 mins
+	$scope.isBegin = "begin";														// set button text to "begin"
 	var minutes = $scope.countdown;
 	var seconds = 0;
 	var isPlaying = false;
+	var isWork = true;
 	var audio = new Audio("glass_ping.mp3");
 	var timeout;
 
@@ -35,11 +35,13 @@ pomodoroApp.controller("pomodoroController", ["$scope", "$timeout", function($sc
 		if (minutes === 0 && seconds === 0) {
 			audio.play();
 			$scope.isBegin = "pause";													// break immediately begins
-			if ($scope.countdown === $scope.workTime) {				// check which countdown: work or break			
-				$scope.countdown = $scope.breakTime;
+			if ($scope.countdown === $scope.workTime) {				// check if work interval complete			
+				$scope.countdown = $scope.breakTime;						// switch to break interval
+				isWork = false;
 			}
 			else {
-				$scope.countdown = $scope.workTime;
+				$scope.countdown = $scope.workTime;							// switch back to work interval
+				isWork = true;
 			}
 			minutes = $scope.countdown;
 			timeout = $timeout($scope.updateTimer, 1000);			// start break countdown
@@ -64,22 +66,40 @@ pomodoroApp.controller("pomodoroController", ["$scope", "$timeout", function($sc
 
 	$scope.addWork = function(time) {
 		if (time > 0) {
-			$scope.workTime++;
-			$scope.countdown++;
+			if (!isPlaying) {
+				$scope.workTime++;
+				$scope.countdown++;
+				minutes++;
+			}
 		}
 	};
 	$scope.subWork = function(time) {
 		if (time > 0) {
-			$scope.workTime--;
-			$scope.countdown--;
+			if (!isPlaying) {
+				$scope.workTime--;
+				$scope.countdown--;
+				minutes--;
+			}
 		}
 	};
 	$scope.addBreak = function(time) {
-		if (time > 0)
-			$scope.breakTime++;
+		if (time > 0) {
+			if (!isPlaying) {
+				$scope.breakTime++;
+				if (!isWork) {
+					minutes++;
+				}
+			}
+		}
 	};
 	$scope.subBreak = function(time) {
-		if (time > 0)
-			$scope.breakTime--;
+		if (time > 0) {
+			if (!isPlaying) {
+				$scope.breakTime--;
+				if (!isWork) {
+					minutes--;
+				}
+			}
+		}
 	};
 }]);
