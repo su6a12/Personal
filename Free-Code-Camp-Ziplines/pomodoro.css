@@ -29,10 +29,11 @@ h1 {
 button {
 	cursor: pointer;
 }
-#button-hide {
-
+button#start,
+button#clear {
+	margin: 0 30px;
 }
-#timer {
+#timer-countdown {
 	font-size: 100px;
 	margin-top: 20px;
 	letter-spacing: 0.2em;

@@ -1,14 +1,15 @@
 var pomodoroApp = angular.module("pomodoroApp", []);
 
 pomodoroApp.controller("pomodoroController", ["$scope", "$timeout", function($scope, $timeout) {
-	$scope.breakTime = 5;																// set initial break to 5 mins
-	$scope.workTime = $scope.countdown = 25;						// set initial work and display to 25 mins
+	$scope.workTime = 25;																// set initial work and display to 25 mins
+	$scope.breakTime = 5;															// set initial break to 5 mins
 	$scope.isBegin = "begin";														// set button text to "begin"
+	$scope.countdown = $scope.workTime;
 	var minutes = $scope.countdown;
 	var seconds = 0;
 	var isPlaying = false;
 	var isWork = true;
-	var audio = new Audio("glass_ping.mp3");
+	var audio = new Audio("http://www.noiseaddicts.com/samples_1w72b820/3719.mp3");
 	var timeout;
 
 	$scope.updateTimer = function() {
@@ -35,7 +36,7 @@ pomodoroApp.controller("pomodoroController", ["$scope", "$timeout", function($sc
 		if (minutes === 0 && seconds === 0) {
 			audio.play();
 			$scope.isBegin = "pause";													// break immediately begins
-			if ($scope.countdown === $scope.workTime) {				// check if work interval complete			
+			if (isWork) {																			// check if work interval complete			
 				$scope.countdown = $scope.breakTime;						// switch to break interval
 				isWork = false;
 			}
@@ -62,6 +63,18 @@ pomodoroApp.controller("pomodoroController", ["$scope", "$timeout", function($sc
 			isPlaying = false;
 			$scope.isBegin = "resume";												// currently paused
 		}
+	};
+
+	$scope.clearTimer = function() {											// clear button resets all variables
+		$timeout.cancel(timeout);
+		$scope.workTime = 25;
+		$scope.breakTime = 5;
+		$scope.isBegin = "begin";
+		isPlaying = false;
+		isWork = true;
+		$scope.countdown = $scope.workTime;
+		minutes = $scope.countdown;
+		seconds = 0;
 	};
 
 	$scope.addWork = function(time) {
