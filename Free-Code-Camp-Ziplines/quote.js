@@ -2,7 +2,7 @@ var prevQuote = 0;
 var quote = "";
 // Using Quotes on Design API
 $(".new-quote").click(function() {
-
+  $(".quote-container").css("display", "block");    // show quote container
   $.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=30&callback=", function(data) {
     var randQuote = Math.floor(Math.random() * (30-1));
     
