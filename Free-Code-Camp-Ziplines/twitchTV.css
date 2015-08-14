@@ -1,6 +1,13 @@
 body {
 	font-family: "Dosis", sans-serif;
 }
+#search-container {
+	text-align: center;
+	margin: 0 auto;
+}
+#search {
+	width: 300px;
+}
 ul {
 	list-style-type: none;
 	position: relative;
