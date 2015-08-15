@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 		$("#list>li").each(function() {							// dynamically checking
 			//console.log($(this).attr("id"));
-			$(this).attr("id").toLowerCase().indexOf(currentVal) === 0 ? $(this).show() : $(this).hide();
+			$(this).attr("id").toLowerCase().indexOf(currentVal) >= 0 ? $(this).show() : $(this).hide();
 		});
 
 

@@ -1,0 +1,64 @@
+body {
+	display: relative;
+}
+h1 {
+	text-align: center;
+	letter-spacing: 0.2em;
+	font-size: 50px;
+	font-family: 'Rock Salt', cursive;
+}
+#search-container {
+	margin: 0 auto;
+	margin-top: 50px;
+	text-align: center;
+}
+#search {
+	width: 100px;
+	-webkit-transition:	width 0.5s ease;
+	-moz-transition:		width 0.5s ease;
+	transition:					width 0.5s ease;
+}
+#search:focus {
+	width: 300px;
+	-webkit-transition:	width 0.5s ease;
+	-moz-transition:		width 0.5s ease;
+	transition:					width 0.5s ease;
+}
+ul {
+	list-style-type: none;
+	text-align: center;
+}
+#list-container {
+	margin: 50px;
+	position: relative;
+	font-family: "Dosis", sans-serif;
+}
+.article-tile {
+	width: 200px;
+	height: 300px;
+	float: left;
+	margin: 10px 30px;
+	border: 1px solid black;
+	cursor: pointer;
+}
+.article-tile:hover {
+	border: 1px solid red;
+}
+.article-img {
+	display: block;
+	max-width: 195px;
+	max-height: 195px;
+	width: auto;
+	height: auto;
+	margin: 0 auto;
+}
+.article-author {
+	font-size: 18px;
+	font-weight: 800;
+}
+.article-headline {
+	font-size: 15px;
+}
+li:hover .article-headline {
+	text-decoration: underline;
+}
