@@ -1,9 +1,9 @@
 $(document).ready(function() {
-	
-	var currentLat, currentLong, currentLocation, tempF, tempC;
+
+	var currentLat, currentLong, currentLocation, currentTime, isSunset, tempF, tempC;
 	var unit = "Imperial", degreeType = "&deg;F";	//Get info in Farenheit
 
-	$("body").css("backgroundImage", 'url("https://static.pexels.com/photos/3768/sky-sunny-clouds-cloudy.jpg")');
+	//$("body").css("backgroundImage", 'url("https://static.pexels.com/photos/3768/sky-sunny-clouds-cloudy.jpg")');
 
 	$.getJSON("https://www.telize.com/geoip?callback=?", function(location) {
     currentLat = location.latitude;
@@ -23,19 +23,33 @@ $(document).ready(function() {
 
 		function weatherData(data) {
 			console.log(data);
-			$("#temp").html(data.main.temp + " " + degreeType);
-
 			tempF = data.main.temp;
-			tempC = (tempF - 32) / 1.8;
+			$("#temp").html(tempF + " " + degreeType);
 
-			if (tempF <= 32) {
+			currentTime = SunCalc.getTimes(new Date(), currentLat, currentLong);	// using suncalc.js file code
+
+			isSunset = (new Date().getTime() - currentTime.sunset.getTime() >= 0) ? true : false;
+			tempC = (tempF - 32) / 1.8;
+			//currentTime = new Date().getTime();
+			//console.log(currentTime);
+
+			if (data.snow in data) {																					// if it's snowing
 				$("body").css("backgroundImage", 'url("https://static.pexels.com/photos/1127/cold-snow-landscape-nature.jpg")');
 			}
-			else if (tempF > 95) {
+			if (tempF > 90 && !(data.rain in data) && !isSunset) {						// if it's hot, not raining	nor nighttime	
 				$("body").css("backgroundImage", 'url("https://static.pexels.com/photos/1183/red-desert-dry-hill.jpg")');
 			}
-			else if (data.rain in data) {
+			if (data.rain in data) {																					// if it's raining
 				$("body").css("backgroundImage", 'url("https://static.pexels.com/photos/896/city-weather-glass-skyscrapers.jpg")');
+			}
+			if (data.clouds.all > 60 && !(data.rain in data) && !isSunset) {	// if it's cloudy, not raining nor nighttime
+				$("body").css("backgroundImage", 'url("https://static.pexels.com/photos/3942/clouds-cloudy-field-agriculture.jpeg")');
+			}
+			if (isSunset) {																										// if it's nighttime
+				$("body").css("backgroundImage", 'url("https://static.pexels.com/photos/6546/sky-night-space-trees.jpeg")');
+			}
+			else {
+				$("body").css("backgroundImage", 'url("https://static.pexels.com/photos/6861/landscape-clouds-blue-trees.jpg")');
 			}
 		}
 
