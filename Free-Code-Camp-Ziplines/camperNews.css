@@ -28,12 +28,18 @@ ul {
 	list-style-type: none;
 	text-align: center;
 }
+a:link,
+a:visited {
+	text-decoration: none;
+	color: inherit;
+}
 #list-container {
 	margin: 50px;
 	position: relative;
 	font-family: "Dosis", sans-serif;
 }
 .article-tile {
+	position: relative;
 	width: 200px;
 	height: 300px;
 	float: left;
@@ -46,19 +52,26 @@ ul {
 }
 .article-img {
 	display: block;
-	max-width: 195px;
-	max-height: 195px;
-	width: auto;
-	height: auto;
+	width: 195px;
+	height: 160px;
+	/*width: auto;
+	height: auto;*/
 	margin: 0 auto;
 }
 .article-author {
 	font-size: 18px;
 	font-weight: 800;
+	margin-top: 20px;
 }
 .article-headline {
 	font-size: 15px;
 }
 li:hover .article-headline {
 	text-decoration: underline;
+}
+.upvote {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 0 10px 10px 0;
 }
