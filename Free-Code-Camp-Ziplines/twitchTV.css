@@ -1,5 +1,17 @@
 body {
 	font-family: "Dosis", sans-serif;
+	position: relative;
+}
+body::after {
+	content: "";
+	background-image: url('http://media.bestofmicro.com/8/9/416313/gallery/twitch1_w_500.png');
+	opacity: 0.4;
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
 }
 #search-container {
 	text-align: center;
@@ -7,6 +19,7 @@ body {
 }
 #search {
 	width: 300px;
+	border: 3px solid #FF00FF;
 }
 ul {
 	list-style-type: none;
@@ -51,6 +64,9 @@ ul li {
 }
 #buttons {
 	text-align: center;
+}
+.btn {
+	border: 2px solid blue;
 }
 #all,
 #online,

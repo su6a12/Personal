@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	//$("body").css("background-image", "url('http://media.bestofmicro.com/8/9/416313/gallery/twitch1_w_500.png')");
+
 	var channels = ["freecodecamp", "storbeck", "terakilobyte", "habathcx","RobotCaleb","thomasballinger","noobs2ninjas","beohoff","MedryBW"];
 
 	var twitchBaseAPI = "https://api.twitch.tv/kraken/";
