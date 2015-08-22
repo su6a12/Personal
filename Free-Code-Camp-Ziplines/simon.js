@@ -1,33 +1,48 @@
 $(document).ready(function() {
-	var attempt = [], simon = [], level = 1, lives = 3, index = 0, flag = true, color = "", playerTurn = false;
+	var attempt = [], simon = [], level = 1, lives = 3, index = 0, flag = true, color = "", playerTurn = false, soundIndex;
 	var slices = ["red", "blue", "yellow", "green"];
+	var redSound = new Audio("http://www.chiptape.com/chiptape/sounds/short/wipeHi.wav");
+	var blueSound = new Audio("http://www.chiptape.com/chiptape/sounds/short/boingShort.wav");
+	var yellowSound = new Audio("http://www.chiptape.com/chiptape/sounds/short/dinkMenu.wav");
+	var greenSound = new Audio("http://www.chiptape.com/chiptape/sounds/short/horn.wav");
+	var sounds = [redSound, blueSound, yellowSound, greenSound];
+	
+
 
 	$("#level").html(level);																		// set level count to 1
 	$("#lives").html(lives);																		//set lives count to 3
 		
 	$(".slice").on("click", function() {
 		if (playerTurn) {																					// only add to attempt array if it's player's turn
-			attempt.push($(this).attr("id"));												// push guess into attempt array
-			$(this).fadeOut(150).fadeIn(150);
+			color = $(this).attr("id")
+			attempt.push(color);																		// push guess into attempt array
 
-			if (attempt[index] !== simon[index]) {									// if guess is incorrect
-				flag = false;			
-				alert("Game over, try again!");
-				reset();																							// reset game
-			}
-			if (flag && index === simon.length-1) {									// if entire guess is correct
-				playerTurn = false;																		// turn control to code for new pattern, user can't click
-				attempt = [];																					// reset attempt array
-				level++;																							// level up
-				$("#level").html(level);
-				index = 0;																						// reset index
-				color = slices[Math.floor(Math.random() * (3 + 1))];	// add upon pattern
-				simon.push(color);
+			$(this).fadeOut(150).fadeIn(150);
+			soundIndex = slices.indexOf(color);
+			sounds[soundIndex].play();
+
+			if (attempt[index] !== simon[index]) {									// if guess is incorrect	
+				alert("Incorrect, try again.");
 				patternBlink(simon);
+				index = 0;
+				attempt = [];
+				//flag = true;
 			}
-			else if (flag && index !== simon.length-1) {						// if current guess is correct, but not the end of pattern
-				index++;																							// increase index
-				return;
+			else {
+				if (index === simon.length-1) {									// if entire guess is correct
+					playerTurn = false;																		// turn control to code for new pattern, user can't click
+					attempt = [];																					// reset attempt array
+					level++;																							// level up
+					$("#level").html(level);
+					index = 0;																						// reset index
+					color = slices[Math.floor(Math.random() * (3 + 1))];	// add upon pattern
+					simon.push(color);
+					patternBlink(simon);
+				}
+				else if (index !== simon.length-1) {						// if current guess is correct, but not the end of pattern
+					index++;																							// increase index
+					return;
+				}
 			}
 		}
 	});
@@ -52,6 +67,8 @@ $(document).ready(function() {
 			for(var i = 0; i < simon.length; i++) {									// make each blink sequentially
 				(function(i) { 
 					setTimeout(function() {
+						soundIndex = slices.indexOf(simon[i]);
+						sounds[soundIndex].play();
 						$("#"+simon[i]).fadeOut(150).fadeIn(150);					// make selected slice blink
 					}, i * 800);
 				})(i);																								// make it user's turn to play														
@@ -70,22 +87,4 @@ $(document).ready(function() {
 		index = 0;
 	}
 });																														// end of document.ready
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
