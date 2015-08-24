@@ -87,4 +87,3 @@ $(document).ready(function() {
 		index = 0;
 	}
 });																														// end of document.ready
-
