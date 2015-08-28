@@ -1,0 +1,235 @@
+body {
+    font-family: 'Dosis', sans-serif;
+}
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    zoom: 1;    /*For < IE 8*/
+}
+p#about-me {
+    padding: 10px;
+    font-family: "Dosis", sans-serif;
+    font-size: 25px;
+    text-indent: 50px;
+    color: #585858;
+}
+/*--------------------------------Header-----------------------------------*/
+header {
+    margin: 0.25% 5% 0 5%;
+}
+#header-container {
+    max-width: 960px;
+    margin: 0 auto;
+    height: 100px;
+}
+#name-title {
+    position: relative;
+    width: 24%;
+}
+#name-header {
+    position: relative;
+    max-width: 200px;       /*Size of name and subtitle*/
+    float: left;
+    margin: 0 3%;
+}
+div#name-header a:hover {
+    text-decoration: none;
+}
+h1, h5 {
+    font-family: "Dosis", sans-serif;
+    color: #686868;
+    text-decoration: none;
+}
+h1 {
+    margin: 5px 0;
+}
+h5 {
+    margin: 0 0 20px;
+}
+/*---------------------------------Nav Bar-----------------------------------*/
+#main-nav {
+    width: 75%;
+    float: right;
+}
+#main-nav ul {
+    list-style: none;
+    text-align: right;
+    width: 100%;
+    margin: 2% 0 0 0;      /*Move the nav bar further to the right*/
+    display: block;
+}
+#main-nav ul li {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: 'Dosis', sans-serif;
+    padding: 1% 2.5%;
+    border-radius: 5px;
+}
+/*-------------------------------Content----------------------------------*/
+#about-me {
+    margin-top: 30px;
+    height: 300px;
+}
+#about-me-p {
+    width: 960px;
+    font-size: 30px;
+    margin: 0 auto;
+    text-indent: 50px;
+    color: #686868;
+}
+a,
+a:hover {
+    color: black;
+}
+section {
+    /*max-width: 960px;*/
+    margin: 0 auto;
+    position: relative;
+}
+/*#projects-list {
+    margin-top: 100px;
+}*/
+#projects-list ul {
+    list-style-type: none;
+    position: relative;
+}
+#projects-list .project-tile {
+    display: inline-block;
+    margin: 20px 50px;
+}
+#projects-list::after {
+    content: "";
+    background-image: url("https://images.unsplash.com/photo-1425315283416-2acc50323ee6?q=80&fm=jpg&s=94c3e17a79354c33dbd59ced862b1460");
+    background-size: cover;
+    opacity: 0.4;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.6);
+    max-width: 100%;
+}
+.project-tile {
+    width: 300px;
+    height: 255px;
+    border: 2px solid black;
+}
+.project-tile img {
+    width: 290px;
+    height: 250px;
+    background-size: cover;
+}
+.project-tile li {
+    text-align: center;
+    font-size: 20px;
+}
+.project-name {
+    text-align: center;
+}
+/*#about-me::after {
+    content: "";
+    background-image: url("https://images.unsplash.com/photo-1437422061949-f6efbde0a471?q=80&fm=jpg&s=e23055c9ba7686b8fe583fb8318a1f88");
+    background-size: cover;
+    opacity: 0.4;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.6);
+    max-width: 100%;
+}*/
+#contact-info ul {
+    list-style-type: none;
+    text-align: center;
+    margin-bottom: 50px;
+}
+#contact-info ul li {
+    display: inline-block;
+    margin: 0 50px;
+    font-size: 30px;
+    font-family: "Dosis", sans-serif;
+}
+section#contact-info {
+    margin-top: 100px;
+}
+/*#main-image {
+    background: linear-gradient(#2FCCCF, transparent 90%),
+                linear-gradient(0deg, #fff, transparent 50%),
+                url("../images/cherry_blossoms.JPG") no-repeat center;
+    background-size: cover;
+    position: relative;
+    max-width: 100%;
+    padding-top: 56.25%;        /*sets the height proportional to width 16:9
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.6);
+}
+#about-image {
+    position: relative;
+}
+#about-image::after {
+    content: "";
+    background-image: url("../images/fire_sky.jpg");
+    background-size: cover;
+    opacity: 0.4;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.6);
+    max-width: 100%;
+}
+#about {
+    margin-top: 20px;
+    font-size: 20px;
+}*/
+/*--------------------------Projects Page----------------------------------*/
+/*#projects-list ul {
+    list-style-type: circle;
+}
+#projects-list li {
+    margin: 10px;
+    font-size: 1.5em;
+    display: table;     sets width of li elements to anchor text width
+}
+#projects-list li:hover > a {
+    color: DarkCyan;
+    letter-spacing: 0.3em;
+    -webkit-transition: letter-spacing 0.4s ease;
+    -moz-transition:    letter-spacing 0.4s ease;
+    transition:         letter-spacing 0.4s ease;
+}
+#projects-list li a {
+    letter-spacing: 0;
+    -webkit-transition: letter-spacing 0.4s ease;
+    -moz-transition:    letter-spacing 0.4s ease;
+    transition:         letter-spacing 0.4s ease;
+}
+#projects-list a {
+    text-decoration: none;
+    color: Gray;
+}*/
+/*--------------------------------Footer-----------------------------------
+#main-footer {
+    max-width: 960px;
+    margin: 0 auto;
+}
+#main-footer p {
+    padding: 3% 0;
+}
+
+
+
+
+
