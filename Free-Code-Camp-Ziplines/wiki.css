@@ -1,0 +1,40 @@
+body {
+	text-align: center;
+	font-family: 'Rock Salt', cursive;
+}
+#main-container {
+	margin-top: 100px;
+}
+h1 {
+	font-weight: bold;
+}
+#search-title {
+	font-size: 60px;
+	margin: 0 auto;
+	letter-spacing: 0.1em;
+}
+#search-field {
+	width: 200px;
+	font-size: 35px;
+	font-family: 'Dosis', sans-serif;
+	font-weight: 600;
+	margin-top: 20px;
+	-webkit-transition:	width 0.5s ease;
+	-moz-transition:		width 0.5s ease;
+	transition:					width 0.5s ease;
+}
+#search-field:focus {
+	width: 500px;
+	-webkit-transition:	width 0.5s ease;
+	-moz-transition:		width 0.5s ease;
+	transition:					width 0.5s ease;
+}
+#search-container {
+	margin: 30px auto;
+}
+#search-container button {
+	font-size: 30px;
+	margin-left: 20px;
+	margin-top: -15px;
+}
+
