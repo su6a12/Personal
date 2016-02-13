@@ -85,7 +85,7 @@ $(document).ready(function() {
 						.style("opacity", 0);
 
 
-		var bars = gdpChart.selectAll(".bar")
+		var bars = gdpChart.selectAll("rect.bar")
 						.data(stats)
 						.enter()
 						.append("rect")
