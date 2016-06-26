@@ -11,13 +11,18 @@
 	margin-top: 30px;
 }
 
-svg.bar-chart {
+.bar-chart {
 	margin: 0 auto;
 	background-color: #EBF4F7;
 }
 
-.axis text {
+text {
 	font: 12px sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: black;
 }
 
 .axis path,
@@ -41,4 +46,9 @@ svg.bar-chart {
 	background-color: white;
 	pointer-events: none;
 	z-index: 10;
+}
+
+#source {
+	width: 1000px;
+	margin: 0 auto;
 }

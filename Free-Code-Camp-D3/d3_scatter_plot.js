@@ -74,6 +74,26 @@ $(document).ready(function() {
 						.text("Ranking");
 
 
+		// location description of plot
+		scatterPlot.append("text")
+						.attr("class", "smallText")
+						.attr("dx", 100)
+						.attr("dy", 30)
+						.text("35 Fastest times up Alpe d'Huez");
+
+		// distance description of plot
+		scatterPlot.append("text")
+						.attr("class", "smallText")
+						.attr("dx", 100)
+						.attr("dy", 50)
+						.text("Normalized to 13.8km distance");
+
+		scatterPlot.append("text")
+						.attr("class", "text")
+						.attr("dy", outerHeight)
+						.html("Source: https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/cyclist-data.json");
+
+
 		// define tooltip with info and append to wrapper div
 		// set location of tooltip to somewhere in the top left corner of chart
 		var tooltip = d3.select("#wrapper")
@@ -81,7 +101,7 @@ $(document).ready(function() {
 						.attr("class", "tooltip")
 						.style("opacity", 0)
 						.style("left", innerWidth/4 + 20 + "px")
-						.style("top", innerHeight/4 - 30 + "px");
+						.style("top", innerHeight/4 + 30 + "px");
 
 
 		// define legend for Non Doping
@@ -113,11 +133,11 @@ $(document).ready(function() {
 
 		// MUST selectAll("tag:class"), can't just selectAll("text") in this case. 
 		// Only half of the names weren't showing up
-		var textLabels = scatterPlot.selectAll("text.text")
+		var nameLabels = scatterPlot.selectAll("text.names")
 						.data(data)
 						.enter()
 						.append("svg:text")
-						.attr("class", "text")
+						.attr("class", "names text")
 						.attr("x", function(each) { return x(each.Seconds - minTime); })
 						.attr("y", function(each) { return y(each.Place); })
 						.attr("transform", "translate(10, 5)")
@@ -158,6 +178,7 @@ $(document).ready(function() {
 							tooltip.transition()
 									.style("opacity", 0);
 						});
+
 
 
 	});	// end of .getJSON

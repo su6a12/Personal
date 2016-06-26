@@ -37,52 +37,60 @@ $(document).ready(function() {
 		// displays tick marks without commas
 		// suggest to d3 to create 15 tick marks
 		var xAxis = d3.svg.axis()
-							.scale(xScale)
-							.orient("bottom")
-							.ticks(15)
-							.tickFormat(d3.format("d"));
+					.scale(xScale)
+					.orient("bottom")
+					.ticks(15)
+					.tickFormat(d3.format("d"));
 
 		// set up data for y-axis
 		// displays tick marks as currency
 		var formatComma = d3.format(",.0f");
 
 		var yAxis = d3.svg.axis()
-							.scale(yScale)
-							.orient("left")
-							.tickFormat(function(d) { return "$" + formatComma(d); });
+					.scale(yScale)
+					.orient("left")
+					.tickFormat(function(d) { return "$" + formatComma(d); });
 
 
 		// set up dimensions for bar chart
 		var gdpChart = d3.select(".bar-chart")
-										.attr("width", outerWidth)
-										.attr("height", outerHeight)
-										.append("g")
-										.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+					.attr("width", outerWidth)
+					.attr("height", outerHeight)
+					.append("g")
+					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 		// x-axis
 		// move axis to "bottom" of chart
 		gdpChart.append("g")
-				.attr("transform", "translate(0," + innerHeight + ")")
-				.attr("class", "x axis")
-				.call(xAxis);
+					.attr("transform", "translate(0," + innerHeight + ")")
+					.attr("class", "x axis")
+					.call(xAxis);
 
 		// y-axis
 		// move the text 20px over to the right
 		gdpChart.append("g")
-				.attr("class", "y axis")
-				.call(yAxis)
-				.append("text")
-				.attr("transform", "rotate(-90)")
-				.attr("dy", 20)
-				.style("text-anchor", "end")
-				.text("Gross Domestic Product for USA");
+					.attr("class", "y axis")
+					.call(yAxis)
+					.append("text")
+					.attr("transform", "rotate(-90)")
+					.attr("dy", 20)
+					.style("text-anchor", "end")
+					.text("Gross Domestic Product for USA");
 
 
 		// define tooltip with info and append to wrapper div
 		var tooltip = d3.select("#wrapper")
-						.append("div")
-						.attr("class", "tooltip")
-						.style("opacity", 0);
+					.append("div")
+					.attr("class", "tooltip")
+					.style("opacity", 0);
+
+
+		// note source of data
+		var source = d3.select("#source")
+					.append("text")
+					.attr("class", "source text")
+					.html(data.description);
+
 
 
 		var bars = gdpChart.selectAll("rect.bar")

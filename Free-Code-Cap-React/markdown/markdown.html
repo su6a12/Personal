@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Markdown Previewer</title>
+	<script src="https://fb.me/react-15.1.0.min.js"></script>
+	<script src="https://fb.me/react-dom-15.1.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="markdown.css">
+</head>
+<body>
+	<div id="app" class="container"></div>
+	<script type="text/babel">
+		var MainDisplay = React.createClass({
+  
+			getInitialState: function() {
+			    return {
+			      text: "Heading\n=======\n\nSub-heading\n-----------\n \n### Another deeper heading\n \nParagraphs are separated\nby a blank line.\n\nLeave 2 spaces at the end of a line to do a  \nline break\n\nText attributes *italic*, **bold**, \n`monospace`, ~~strikethrough~~ .\n\nTodo list:\n\n  * code everyday\n  * take breaks\n  * repeat\n\nNumbered list:\n\n  1. walk\n  2. run\n  3. fly!"
+			    }
+			  },
+		  
+			handleChangeText: function(newText) {
+				this.setState({text: newText});
+			},
+		  
+			render: function() {
+				return (
+				  <div className="row" id="main">
+				    <TextField text={this.state.text} changeText={this.handleChangeText}/>
+				    <MarkedDown text={this.state.text}/>
+				  </div>
+				);
+			}
+		});
+
+		var TextField = React.createClass({
+		  
+		  changeText(e) {
+		    this.props.changeText(e.target.value);
+		  },
+		  
+		  render: function() {
+		    return (
+		      <div className="col-md-6">
+		        <textarea rows="25" className="form-control" value={this.props.text} onChange={this.changeText.bind(this)}/>
+		      </div>
+		    );
+		  }
+		});
+
+		var MarkedDown = React.createClass({
+		  
+		  markupText: function(text) {
+		    return {
+		      __html: marked(text.toString())
+		    }
+		  },
+  
+		render: function() {
+		return (
+			<div className="col-md-6" >
+		    	<span dangerouslySetInnerHTML={this.markupText(this.props.text)}></span>
+		  	</div>
+		  )
+  	}
+});
+
+
+	ReactDOM.render(
+	  <MainDisplay/>,
+	  document.getElementById("app")
+	);
+	</script>
+</body>
+</html>

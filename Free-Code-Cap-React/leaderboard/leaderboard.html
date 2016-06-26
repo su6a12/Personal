@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>FCC Camper Leaderboard</title>
+	<script src="https://fb.me/react-15.1.0.min.js"></script>
+	<script src="https://fb.me/react-dom-15.1.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="container" id="main"></div>
+	<script type="text/babel">
+
+class Table extends React.Component {
+  
+  render() {
+    return (
+      <table className="table-striped">
+        <Header {...this.props}/>
+        <CampersList {...this.props}/>
+      </table>
+    )
+  }
+}
+
+class Header extends React.Component {
+  
+  sortRecent(e) {
+    e.preventDefault();
+    this.props.onSortClick("recent");
+  }
+  
+  sortAllTime(e) {
+    e.preventDefault();
+    this.props.onSortClick("alltime");
+  }
+  
+  isActive(col) {
+    if (col === this.props.currentSorting) {
+      return "col-md-3 center sortcol active";
+    }
+    else {
+      return "col-md-3 center sortcol";
+    }
+  }
+  
+  render() {
+    return (
+      <thead>
+      <tr>
+        <th className="col-md-1 center">Standing</th>
+        <th className="col-md-5 right">Camper Name</th>
+        <th className={this.isActive("recent")} onClick={this.sortRecent.bind(this)}>Past 30 Days</th>
+        <th className={this.isActive("alltime")} onClick={this.sortAllTime.bind(this)}>All Time Points</th>
+      </tr>
+        </thead>
+    )
+  }
+}
+
+class CampersList extends React.Component {
+  render() {
+    var profile = this.props.currentSorting == "recent" ? this.props.profilesRecent : this.props.profilesAllTime;
+    
+    var camper = profile.map((repo, index) => {
+                  return (
+                    <tr>
+                      <td className="center">{index+1}</td>
+                      <td><a href={"https://www.freecodecamp.com/" + repo.username} target="_blank"><img src={repo.img}/>{repo.username}</a></td>
+                      <td className="center">{repo.recent}</td>
+                      <td className="center">{repo.alltime}</td>
+                    </tr>
+                  )
+            });
+    
+    return (
+          <tbody> 
+            {camper}
+          </tbody>
+    )
+  }
+}
+class Camper extends React.Component {
+  render() {
+    return(
+      <div>
+        <td>{this.props.id + 1}</td>
+        <td>{this.props.img}{this.props.username}</td>
+        <td>{this.props.recent}</td>
+      </div>
+    )
+  }
+}
+
+class App extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        currentSorting: "recent",
+        profilesRecent: [],
+        profilesAllTime: []
+      };
+    }
+  
+  getRecentTops() {
+    $.ajax({
+      url: "https://fcctop100.herokuapp.com/api/fccusers/top/recent",
+      dataType: "json",
+      success: function(data) {
+        this.setState({profilesRecent: data});
+      }.bind(this),
+      error: function(error) {
+        console.log(error);
+      }.bind(this)
+    });
+  }
+  
+    getAllTimeTops() {
+    $.ajax({
+      url: "https://fcctop100.herokuapp.com/api/fccusers/top/alltime",
+      dataType: "json",
+      success: function(data) {
+        this.setState({profilesAllTime: data});
+      }.bind(this),
+      error: function(error) {
+        console.log(error);
+      }.bind(this)
+    });
+  }
+  
+  componentDidMount() {
+    this.getRecentTops();
+    this.getAllTimeTops();
+  }
+  
+  handleSort(sorting) {
+    if (sorting === "recent") {
+      this.setState({currentSorting: "recent"}, function() {
+        this.getRecentTops();
+      });
+    }
+    else {
+      this.setState({currentSorting: "alltime"}, function() {
+        this.getAllTimeTops();
+      });
+    }
+  }
+  
+  render() {
+    return (
+      <div>
+        <Table {...this.state}
+          onSortClick={this.handleSort.bind(this)}/>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(
+  <App/>,
+  document.getElementById("main")
+);
+
+	</script>
+</body>
+</html>
