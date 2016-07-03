@@ -1,0 +1,60 @@
+.container {
+	position: relative;
+}
+
+#wrapper {
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
+	font-family: sans-serif;
+	border: 1px solid black;
+}
+
+#label {
+	margin-top: 20px;
+	font-size: 30px;
+}
+
+h3 {
+	margin-top: -15px;
+}
+
+#blurb {
+	display: block;
+	margin: -10px auto 0 auto;
+	font-weight: 100;
+	font-size: 0.8em;
+	max-width: 800px;
+}
+
+.tooltip {
+	position: absolute;
+	text-align: center;
+	z-index: 10;
+	font: 16px sans-serif;
+	font-weight: bold;
+	background-color: black;
+	color: white;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.x,
+.y,
+.legend text {
+	font-weight: lighter;
+	font-size: 12px;
+}
+
+g.y {
+	padding-right: 10px;
+}
+
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
